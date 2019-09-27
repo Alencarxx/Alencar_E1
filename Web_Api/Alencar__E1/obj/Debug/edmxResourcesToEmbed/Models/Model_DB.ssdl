@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WorkitemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TB_Workitem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Tipo" Type="varchar" MaxLength="50" />
+    <Property Name="Titulo" Type="varchar" MaxLength="150" />
+    <Property Name="DataCriacao" Type="date" />
+  </EntityType>
+  <EntityContainer Name="WorkitemModelStoreContainer">
+    <EntitySet Name="TB_Workitem" EntityType="Self.TB_Workitem" Schema="dbo" Table="TB.Workitem" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

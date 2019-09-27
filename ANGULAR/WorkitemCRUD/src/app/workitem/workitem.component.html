@@ -1,0 +1,91 @@
+<div class="container">  
+  
+  <mat-card>  
+    <mat-toolbar color="accent">  
+      <div align="center" style="color:white;text-align: right;">  
+        CRUD operation in Angular 7 using Web api and Sql DB  
+      </div>    
+    </mat-toolbar>  
+  <br><br>  
+    <mat-card-content>  
+      <form [formGroup]="workitemForm"(ngSubmit)="onFormSubmit(workitemForm.value)">  
+              <table>  
+                <tr>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="ID" matTooltip="Enter Id" matInput placeholder="Workitem ID">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!workitemForm.get('ID').value && workitemForm.get('ID').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input matInput [matDatepicker]="picker"matTooltip="Date Create" formControlName="DataCriacao"placeholder="Choose Date Create">  
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
+                      <mat-datepicker #picker></mat-datepicker>  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!workitemForm.get('DataCriacao').value && woritemForm.get('DataCriacao').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="Tipo" matTooltip="Enter Tipo" matInput placeholder="Tipo">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!workitemForm.get('Tipo').value && workitemForm.get('Tipo').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                </tr>  
+                <tr> 
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input matTooltip="Enter Titulo"formControlName="Titulo" matInput placeholder="Titulo">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!workitemForm.get('Titulo').value && workitemForm.get('Titulo').touched"></span>  
+                    </mat-error>  
+                  </td>                    
+                </tr>  
+                <tr>  
+                  <td></td>  
+                  <td  class="content-center">  
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!workitemForm.valid">Submit</button>      
+                    <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+                  </td>  
+                  <td>  
+                    <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+                      {{massage}}  
+                    </p>  
+                  </td>  
+                </tr>  
+              </table>  
+  <br><br>  
+        <table class="table" >  
+            <tr ngclass="btn-primary">  
+              <th class="tbl2">ID</th>  
+              <th class="tbl2">Data Criação</th>  
+              <th class="tbl2">Tipo</th>  
+              <th class="tbl2">Titulo</th> 
+              <th class="tbl2">Edit</th>  
+              <th class="tbl2">Delete</th>  
+            </tr>  
+            <tr *ngFor="let workitem of allworkitens | async">  
+              <td class="tbl2">{{workitem.ID}}</td>  
+              <td class="tbl2">{{workitem.DataCriacao | date }}</td>  
+              <td class="tbl2">{{workitem.Tipo}}</td> 
+              <td class="tbl2">{{workitem.Titulo}}</td> 
+              <td class="tbl2">  
+                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadworkitemToEdit(workitem.ID)">Edit</button>  
+              </td>  
+              <td class="tbl2">  
+                <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteWorkitem(workitem.ID)">Delete</button>  
+              </td>  
+            </tr>  
+    
+          </table>  
+      </form>  
+    </mat-card-content>  
+  </mat-card>  
+  </div>  
